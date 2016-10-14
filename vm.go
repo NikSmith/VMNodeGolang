@@ -104,7 +104,7 @@ func (vm *VM) Run(script string, opt VMOptions) (result *VMResult, err error) {
 	}
 
 	finish := make(chan bool)
-	timer := time.NewTimer(time.Second * 2)
+	timer := time.NewTimer(time.Second * time.Duration(opt.Timeout))
 
 	go func() {
 		vm.dockerClient.WaitContainer(container.ID)
